@@ -1,0 +1,157 @@
+# bash completion for zmprov
+
+# arguments:
+#   1 = current word to be completed
+_zmprov_domainList()
+{
+    COMPREPLY=( "${COMPREPLY[@]}"
+        $( compgen -W "$( ${zmprov:-zmprov} getAllDomains)" -- "$1" ) )
+}
+
+# arguments:
+#   1 = current word to be completed
+_zmprov_calendarList()
+{
+    COMPREPLY=( "${COMPREPLY[@]}"
+        $( compgen -W "$( ${zmprov:-zmprov} getAllCalendarResources)" -- "$1" ) )
+}
+
+# arguments:
+#   1 = current word to be completed
+_zmprov_serverList()
+{
+    COMPREPLY=( "${COMPREPLY[@]}"
+        $( compgen -W "$( ${zmprov:-zmprov} getAllServers)" -- "$1" ) )
+}
+
+# arguments:
+#   1 = current word to be completed
+_zmprov_configList()
+{
+# 	This command is too slow. Better to make a list of the attribute
+#    	COMPREPLY=( "${COMPREPLY[@]}"
+#        $( compgen -W "$( ${zmprov:-zmprov} getAllConfig | egrep '^zimbra' | awk '{print $1}' | sed -e 's/://' | uniq )" -- "$1" ) )
+	local opts='zimbraAccountExtraObjectClass zimbraAdminAccessControlMech zimbraAdminConsoleCatchAllAddressEnabled zimbraAdminConsoleDNSCheckEnabled zimbraAdminConsoleLDAPAuthEnabled zimbraAdminConsoleSkinEnabled zimbraAdminImapImportNumThreads zimbraAdminPort zimbraAdminProxyPort zimbraAdminURL zimbraAllowNonLDHCharsInDomain zimbraAmavisDSPAMEnabled zimbraAmavisEnableDKIMVerification zimbraAmavisFinalSpamDestiny zimbraAmavisLogLevel zimbraAmavisMaxServers zimbraAmavisOriginatingBypassSA zimbraAmavisOutboundDisclaimersOnly zimbraAmavisQuarantineAccount zimbraAmavisSALogLevel zimbraAntispamExtractionBatchDelay zimbraAntispamExtractionBatchSize zimbraArchiveEnabled zimbraAttachmentsBlocked zimbraAttachmentsIndexedTextLimit zimbraAttachmentsScanClass zimbraAttachmentsScanEnabled zimbraAttachmentsViewInHtmlOnly zimbraAuthTokenKey zimbraAuthTokenNotificationInterval zimbraAuthTokenValidityValueEnabled zimbraAutoProvBatchSize zimbraAutoProvNotificationBody zimbraAutoProvNotificationSubject zimbraAutoProvPollingInterval zimbraAutoSubmittedNullReturnPath zimbraBackupAutoGroupedInterval zimbraBackupAutoGroupedNumGroups zimbraBackupAutoGroupedThrottled zimbraBackupMinFreeSpace zimbraBackupMode zimbraBackupReportEmailRecipients zimbraBackupReportEmailSender zimbraBackupReportEmailSubjectPrefix zimbraBackupSkipBlobs zimbraBackupSkipHsmBlobs zimbraBackupSkipSearchIndex zimbraBackupTarget zimbraBasicAuthRealm zimbraCBPolicydAccessControlEnabled zimbraCBPolicydAccountingEnabled zimbraCBPolicydAmavisEnabled zimbraCBPolicydBindPort zimbraCBPolicydBypassMode zimbraCBPolicydBypassTimeout zimbraCBPolicydCheckHeloEnabled zimbraCBPolicydCheckSPFEnabled zimbraCBPolicydGreylistingBlacklistMsg zimbraCBPolicydGreylistingDeferMsg zimbraCBPolicydGreylistingEnabled zimbraCBPolicydGreylistingTrainingEnabled zimbraCBPolicydLogLevel zimbraCBPolicydMaxRequests zimbraCBPolicydMaxServers zimbraCBPolicydMaxSpareServers zimbraCBPolicydMinServers zimbraCBPolicydMinSpareServers zimbraCBPolicydQuotasEnabled zimbraCBPolicydTimeoutBusy zimbraCBPolicydTimeoutIdle zimbraCalendarCalDavCalendarAutoScheduleEnabled zimbraCalendarCalDavClearTextPasswordEnabled zimbraCalendarCalDavDefaultCalendarId zimbraCalendarCalDavDisableFreebusy zimbraCalendarCalDavDisableScheduling zimbraCalendarCalDavUseDistinctAppointmentAndToDoCollection zimbraCalendarCompatibilityMode zimbraCalendarRecurrenceDailyMaxDays zimbraCalendarRecurrenceMaxInstances zimbraCalendarRecurrenceMonthlyMaxMonths zimbraCalendarRecurrenceOtherFrequencyMaxYears zimbraCalendarRecurrenceWeeklyMaxWeeks zimbraCalendarRecurrenceYearlyMaxYears zimbraCalendarResourceExtraObjectClass zimbraCertAuthorityCertSelfSigned zimbraCertAuthorityKeySelfSigned zimbraClamAVBindAddress zimbraClamAVListenPort zimbraClamAVMaxThreads zimbraClientTypeRegex zimbraClusterType zimbraCommunityHomeURL zimbraCommunityUsernameMapping zimbraComponentAvailable zimbraConfiguredServerIDForBlobDirEnabled zimbraContactHiddenAttributes zimbraContactRankingTableRefreshInterval zimbraConvertdURL zimbraCsrfRefererCheckEnabled zimbraCsrfTokenCheckEnabled zimbraCsrfTokenKey zimbraDNSTCPUpstream zimbraDNSUseTCP zimbraDNSUseUDP zimbraDataSourceConnectTimeout zimbraDataSourceConnectionType zimbraDataSourceReadTimeout zimbraDatabaseSlowSqlThreshold zimbraDefaultAnalyzerStopWords zimbraDefaultDomainName zimbraDomainAggregateQuota zimbraDomainAggregateQuotaPolicy zimbraDomainAggregateQuotaWarnPercent zimbraDomainExtraObjectClass zimbraDomainMandatoryMailSignatureEnabled zimbraEmptyFolderOpTimeout zimbraExternalAccountStatusCheckInterval zimbraExternalShareInvitationUrlExpiration zimbraFileUploadMaxSize zimbraFileUploadMaxSizePerFile zimbraFreebusyExchangeCachedInterval zimbraFreebusyExchangeCachedIntervalStart zimbraFreebusyExchangeServerType zimbraFreebusyPropagationRetryInterval zimbraGalAlwaysIncludeLocalCalendarResources zimbraGalAutoCompleteLdapFilter zimbraGalGroupIndicatorEnabled zimbraGalInternalSearchBase zimbraGalLdapAttrMap zimbraGalLdapFilterDef zimbraGalLdapPageSize zimbraGalLdapValueMap zimbraGalMaxResults zimbraGalSyncLdapPageSize zimbraGalSyncMaxConcurrentClients zimbraGalSyncTimestampFormat zimbraGalTokenizeAutoCompleteKey zimbraGalTokenizeSearchKey zimbraHsmAge zimbraHsmBatchSize zimbraHsmMovePreviousRevisions zimbraHsmPolicy zimbraHttpCompressionEnabled zimbraHttpConnectorMaxIdleTimeMillis zimbraHttpContextPathBasedThreadPoolBalancingFilterRules zimbraHttpDebugHandlerEnabled zimbraHttpDosFilterDelayMillis zimbraHttpDosFilterMaxRequestsPerSec zimbraHttpHeaderCacheSize zimbraHttpMaxFormContentSize zimbraHttpNumThreads zimbraHttpOutputBufferSize zimbraHttpRequestHeaderSize zimbraHttpResponseHeaderSize zimbraHttpSSLNumThreads zimbraHttpThreadPoolMaxIdleTimeMillis zimbraIPMode zimbraImapBindOnStartup zimbraImapBindPort zimbraImapCleartextLoginEnabled zimbraImapExposeVersionOnBanner zimbraImapMaxConnections zimbraImapMaxRequestSize zimbraImapNumThreads zimbraImapProxyBindPort zimbraImapSSLBindOnStartup zimbraImapSSLBindPort zimbraImapSSLProxyBindPort zimbraImapSSLServerEnabled zimbraImapSaslGssapiEnabled zimbraImapServerEnabled zimbraImapShutdownGraceSeconds zimbraInternalSharingCrossDomainEnabled zimbraInvalidLoginFilterDelayInMinBetwnReqBeforeReinstating zimbraInvalidLoginFilterMaxFailedLogin zimbraInvalidLoginFilterMaxSizeOfFailedIpDb zimbraInvalidLoginFilterReinstateIpTaskIntervalInMin zimbraItemActionBatchSize zimbraLastLogonTimestampFrequency zimbraLastPurgeMaxDuration zimbraLdapGalSyncDisabled zimbraLmtpBindOnStartup zimbraLmtpBindPort zimbraLmtpExposeVersionOnBanner zimbraLmtpLHLORequired zimbraLmtpNumThreads zimbraLmtpPermanentFailureWhenOverQuota zimbraLmtpServerEnabled zimbraLmtpShutdownGraceSeconds zimbraLogHostname zimbraLogRawLifetime zimbraLogSummaryLifetime zimbraLogToSyslog zimbraLowestSupportedAuthVersion zimbraMailClearTextPasswordEnabled zimbraMailContentMaxSize zimbraMailDiskStreamingThreshold zimbraMailDomainQuota zimbraMailEmptyFolderBatchSize zimbraMailEmptyFolderBatchThreshold zimbraMailFileDescriptorBufferSize zimbraMailFileDescriptorCacheSize zimbraMailKeepOutWebCrawlers zimbraMailPort zimbraMailProxyMaxFails zimbraMailProxyPort zimbraMailProxyReconnectTimeout zimbraMailPurgeBatchSize zimbraMailPurgeSleepInterval zimbraMailRedirectSetEnvelopeSender zimbraMailReferMode zimbraMailSSLClientCertMode zimbraMailSSLClientCertOCSPEnabled zimbraMailSSLClientCertPort zimbraMailSSLClientCertPrincipalMap zimbraMailSSLClientCertPrincipalMapLdapFilterEnabled zimbraMailSSLPort zimbraMailSSLProxyClientCertPort zimbraMailSSLProxyPort zimbraMailURL zimbraMailUncompressedCacheMaxBytes zimbraMailUncompressedCacheMaxFiles zimbraMailUseDirectBuffers zimbraMailboxMoveSkipBlobs zimbraMailboxMoveSkipHsmBlobs zimbraMailboxMoveSkipSearchIndex zimbraMailboxMoveTempDir zimbraMailboxdSSLProtocols zimbraMemcachedBindPort zimbraMemcachedClientBinaryProtocolEnabled zimbraMemcachedClientExpirySeconds zimbraMemcachedClientHashAlgorithm zimbraMemcachedClientTimeoutMillis zimbraMessageCacheSize zimbraMessageChannelEnabled zimbraMessageChannelPort zimbraMessageIdDedupeCacheSize zimbraMessageIdDedupeCacheTimeout zimbraMilterBindPort zimbraMilterMaxConnections zimbraMilterNumThreads zimbraMilterServerEnabled zimbraMobileMaxMessageSize zimbraMobileMetadataMaxSizeEnabled zimbraMobileMetadataRetentionPolicy zimbraMtaAddressVerifyNegativeRefreshTime zimbraMtaAddressVerifyPollCount zimbraMtaAddressVerifyPollDelay zimbraMtaAddressVerifyPositiveRefreshTime zimbraMtaAliasMaps zimbraMtaAlwaysAddMissingHeaders zimbraMtaAntiSpamLockMethod zimbraMtaAuthEnabled zimbraMtaAuthTarget zimbraMtaBlockedExtensionWarnAdmin zimbraMtaBlockedExtensionWarnRecipient zimbraMtaBounceNoticeRecipient zimbraMtaBounceQueueLifetime zimbraMtaBrokenSaslAuthClients zimbraMtaCommandDirectory zimbraMtaCommonBlockedExtension zimbraMtaDaemonDirectory zimbraMtaDefaultProcessLimit zimbraMtaDelayWarningTime zimbraMtaDnsLookupsEnabled zimbraMtaEnableSmtpdPolicyd zimbraMtaHeaderChecks zimbraMtaInFlowDelay zimbraMtaLmdbMapSize zimbraMtaLmtpConnectionCacheTimeLimit zimbraMtaLmtpHostLookup zimbraMtaLmtpTlsCiphers zimbraMtaLmtpTlsLoglevel zimbraMtaLmtpTlsMandatoryCiphers zimbraMtaLmtpTlsProtocols zimbraMtaLmtpTlsSecurityLevel zimbraMtaMailqPath zimbraMtaManpageDirectory zimbraMtaMaxMessageSize zimbraMtaMaxUse zimbraMtaMaximalBackoffTime zimbraMtaMilterCommandTimeout zimbraMtaMilterConnectTimeout zimbraMtaMilterContentTimeout zimbraMtaMilterDefaultAction zimbraMtaMinimalBackoffTime zimbraMtaMyDestination zimbraMtaNewaliasesPath zimbraMtaNotifyClasses zimbraMtaPolicyTimeLimit zimbraMtaPropagateUnmatchedExtensions zimbraMtaQueueDirectory zimbraMtaQueueRunDelay zimbraMtaRecipientDelimiter zimbraMtaRestriction zimbraMtaSaslAuthEnable zimbraMtaSaslSmtpdMechList zimbraMtaSenderCanonicalMaps zimbraMtaSendmailPath zimbraMtaSmtpCnameOverridesServername zimbraMtaSmtpHeloName zimbraMtaSmtpSaslAuthEnable zimbraMtaSmtpSaslSecurityOptions zimbraMtaSmtpTlsCiphers zimbraMtaSmtpTlsLoglevel zimbraMtaSmtpTlsMandatoryCiphers zimbraMtaSmtpTlsProtocols zimbraMtaSmtpTlsSecurityLevel zimbraMtaSmtpdBanner zimbraMtaSmtpdClientPortLogging zimbraMtaSmtpdClientRestrictions zimbraMtaSmtpdDataRestrictions zimbraMtaSmtpdErrorSleepTime zimbraMtaSmtpdHardErrorLimit zimbraMtaSmtpdHeloRequired zimbraMtaSmtpdProxyTimeout zimbraMtaSmtpdRejectUnlistedRecipient zimbraMtaSmtpdRejectUnlistedSender zimbraMtaSmtpdSaslAuthenticatedHeader zimbraMtaSmtpdSaslSecurityOptions zimbraMtaSmtpdSaslTlsSecurityOptions zimbraMtaSmtpdTlsAskCcert zimbraMtaSmtpdTlsCcertVerifydepth zimbraMtaSmtpdTlsCiphers zimbraMtaSmtpdTlsLoglevel zimbraMtaSmtpdTlsMandatoryCiphers zimbraMtaSmtpdTlsProtocols zimbraMtaSmtpdVirtualTransport zimbraMtaStpdSoftErrorLimit zimbraMtaTlsAppendDefaultCA zimbraMtaTlsAuthOnly zimbraMtaTlsSecurityLevel zimbraMtaTransportMaps zimbraMtaUnverifiedRecipientDeferCode zimbraMtaVirtualAliasDomains zimbraMtaVirtualAliasExpansionLimit zimbraMtaVirtualAliasMaps zimbraMtaVirtualMailboxDomains zimbraMtaVirtualMailboxMaps zimbraNetworkLicense zimbraNotebookFolderCacheSize zimbraNotebookMaxCachedTemplatesPerFolder zimbraNotebookPageCacheSize zimbraNotifyBindPort zimbraNotifySSLBindPort zimbraNotifySSLServerEnabled zimbraNotifyServerEnabled zimbraOpenidConsumerStatelessModeEnabled zimbraPop3BindOnStartup zimbraPop3BindPort zimbraPop3CleartextLoginEnabled zimbraPop3ExposeVersionOnBanner zimbraPop3MaxConnections zimbraPop3NumThreads zimbraPop3ProxyBindPort zimbraPop3SSLBindOnStartup zimbraPop3SSLBindPort zimbraPop3SSLProxyBindPort zimbraPop3SSLServerEnabled zimbraPop3SaslGssapiEnabled zimbraPop3ServerEnabled zimbraPop3ShutdownGraceSeconds zimbraPrevFoldersToTrackMax zimbraProduct zimbraRedoLogArchiveDir zimbraRedoLogCrashRecoveryLookbackSec zimbraRedoLogDeleteOnRollover zimbraRedoLogEnabled zimbraRedoLogFsyncIntervalMS zimbraRedoLogLogPath zimbraRedoLogRolloverFileSizeKB zimbraRedoLogRolloverHardMaxFileSizeKB zimbraRedoLogRolloverMinFileAge zimbraRegexMaxAccessesWhenMatching zimbraRemoteManagementCommand zimbraRemoteManagementPort zimbraRemoteManagementPrivateKeyPath zimbraRemoteManagementUser zimbraReverseProxyAcceptMutex zimbraReverseProxyAdminEnabled zimbraReverseProxyAdminPortAttribute zimbraReverseProxyAuthWaitInterval zimbraReverseProxyAvailableLookupTargets zimbraReverseProxyCacheEntryTTL zimbraReverseProxyCacheFetchTimeout zimbraReverseProxyCacheReconnectInterval zimbraReverseProxyClientCertMode zimbraReverseProxyConnectTimeout zimbraReverseProxyDnsLookupInServerEnabled zimbraReverseProxyDomainNameAttribute zimbraReverseProxyDomainNameQuery zimbraReverseProxyExactServerVersionCheck zimbraReverseProxyExternalRouteIncludeOriginalAuthusername zimbraReverseProxyGenConfigPerVirtualHostname zimbraReverseProxyHttpEnabled zimbraReverseProxyHttpPortAttribute zimbraReverseProxyHttpSSLPortAttribute zimbraReverseProxyIPLoginLimit zimbraReverseProxyIPLoginLimitTime zimbraReverseProxyImapEnabledCapability zimbraReverseProxyImapExposeVersionOnBanner zimbraReverseProxyImapPortAttribute zimbraReverseProxyImapSSLPortAttribute zimbraReverseProxyImapSaslGssapiEnabled zimbraReverseProxyImapSaslPlainEnabled zimbraReverseProxyImapStartTlsMode zimbraReverseProxyInactivityTimeout zimbraReverseProxyIpThrottleMsg zimbraReverseProxyLogLevel zimbraReverseProxyLookupTarget zimbraReverseProxyMailEnabled zimbraReverseProxyMailHostAttribute zimbraReverseProxyMailHostQuery zimbraReverseProxyMailImapEnabled zimbraReverseProxyMailImapsEnabled zimbraReverseProxyMailPop3Enabled zimbraReverseProxyMailPop3sEnabled zimbraReverseProxyPassErrors zimbraReverseProxyPop3EnabledCapability zimbraReverseProxyPop3ExposeVersionOnBanner zimbraReverseProxyPop3PortAttribute zimbraReverseProxyPop3SSLPortAttribute zimbraReverseProxyPop3SaslGssapiEnabled zimbraReverseProxyPop3SaslPlainEnabled zimbraReverseProxyPop3StartTlsMode zimbraReverseProxyPortQuery zimbraReverseProxyRouteLookupTimeout zimbraReverseProxyRouteLookupTimeoutCache zimbraReverseProxySSLCiphers zimbraReverseProxySSLECDHCurve zimbraReverseProxySSLProtocols zimbraReverseProxySSLToUpstreamEnabled zimbraReverseProxySendImapId zimbraReverseProxySendPop3Xoip zimbraReverseProxyUpstreamConnectTimeout zimbraReverseProxyUpstreamEwsServers zimbraReverseProxyUpstreamLoginServers zimbraReverseProxyUpstreamPollingTimeout zimbraReverseProxyUpstreamReadTimeout zimbraReverseProxyUpstreamSendTimeout zimbraReverseProxyUserLoginLimit zimbraReverseProxyUserLoginLimitTime zimbraReverseProxyUserThrottleMsg zimbraReverseProxyWorkerConnections zimbraReverseProxyWorkerProcesses zimbraSSLExcludeCipherSuites zimbraSaslGssapiRequiresTls zimbraScheduledTaskNumThreads zimbraShareNotificationMtaAuthRequired zimbraShareNotificationMtaConnectionType zimbraShareNotificationMtaEnabled zimbraSharingUpdatePublishInterval zimbraSmtpHostname zimbraSmtpPort zimbraSmtpSendAddAuthenticatedUser zimbraSmtpSendAddMailer zimbraSmtpSendAddOriginatingIP zimbraSmtpSendPartial zimbraSmtpTimeout zimbraSoapExposeVersion zimbraSoapRequestMaxSize zimbraSpamCheckEnabled zimbraSpamHeader zimbraSpamHeaderValue zimbraSpamIsNotSpamAccount zimbraSpamIsSpamAccount zimbraSpamKillPercent zimbraSpamReportEnvelopeFrom zimbraSpamReportSenderHeader zimbraSpamReportTypeHam zimbraSpamReportTypeHeader zimbraSpamReportTypeSpam zimbraSpamTagPercent zimbraSpamTrashAlias zimbraSpellAvailableDictionary zimbraSpnegoAuthEnabled zimbraStatThreadNamePrefix zimbraTableMaintenanceGrowthFactor zimbraTableMaintenanceMaxRows zimbraTableMaintenanceMinRows zimbraTableMaintenanceOperation zimbraThreadMonitorEnabled zimbraVersionCheckInterval zimbraVersionCheckLastAttempt zimbraVersionCheckLastResponse zimbraVersionCheckLastSuccess zimbraVersionCheckNotificationBody zimbraVersionCheckNotificationEmail zimbraVersionCheckNotificationEmailFrom zimbraVersionCheckNotificationSubject zimbraVersionCheckSendNotifications zimbraVersionCheckServer zimbraVersionCheckURL zimbraVirusBlockEncryptedArchive zimbraVirusCheckEnabled zimbraVirusDefinitionsUpdateFrequency zimbraVirusWarnAdmin zimbraVirusWarnRecipient zimbraWebClientMaxInputBufferLength zimbraWebGzipEnabled zimbraXMPPEnabled zimbraZimletDataSensitiveInMixedModeDisabled zimbraZimletJspEnabled'
+	printf %s "$opts"
+}
+
+# arguments:
+#   1 = current word to be completed
+_zmprov_cosList()
+{
+    COMPREPLY=( "${COMPREPLY[@]}"
+        $( compgen -W "$( ${zmprov:-zmprov} getAllCos)" -- "$1" ) )
+}
+
+# arguments:
+#   1 = current word to be completed
+_zmprov_dlList()
+{
+    COMPREPLY=( "${COMPREPLY[@]}"
+        $( compgen -W "$( ${zmprov:-zmprov} getAllDistributionLists)" -- "$1" ) )
+}
+
+# arguments:
+#   1 = current word to be completed
+_zmprov_loggerList()
+{
+    COMPREPLY=( "${COMPREPLY[@]}"
+        $( compgen -W "$( ${zmprov:-zmprov} getAllAccountLoggers)" -- "$1" ) )
+}
+
+_zmprov_loglist()
+{
+    local opts='zimbra.account zimbra.acl zimbra.activity zimbra.autoprov zimbra.backup zimbra.cache zimbra.calendar zimbra.datasource zimbra.dav zimbra.dbconn zimbra.doc zimbra.ews zimbra.extensions zimbra.filter zimbra.gal zimbra.im zimbra.imap zimbra.imap-client zimbra.index zimbra.io zimbra.ldap zimbra.lmtp zimbra.mailbox zimbra.mailop zimbra.milter zimbra.misc zimbra.nginxlookup zimbra.pop zimbra.pop-client zimbra.purge zimbra.redolog zimbra.search zimbra.security zimbra.session zimbra.smtp zimbra.soap zimbra.sqltrace zimbra.store zimbra.sync zimbra.system zimbra.zimlet'
+    printf %s "$opts"
+
+}
+
+_zmprov_baseopts()
+{
+    local opts='addAccountAlias addAccountLogger addDistributionListAlias addDistributionListMember autoCompleteGal autoProvControl checkPasswordStrength checkRight copyCos countAccount countObjects createAccount createAliasDomain createBulkAccounts createCalendarResource createCos createDataSource createDistributionList createDynamicDistributionList createDomain createServer createIdentity createSignature deleteAccount deleteCalendarResource deleteCos deleteDataSource deleteDistributionList deleteDomain deleteIdentity deleteSignature deleteServer flushCache generateDomainPreAuth generateDomainPreAuthKey getAccount getDataSources getIdentities getSignatures getAccountMembership getAllAccounts getAccountLoggers getAllActiveServers getAllAccountLoggers getAllAdminAccounts getAllCalendarResources getAllConfig getAllCos getAllDistributionLists getAllDomains getAllEffectiveRights getAllFbp getAllRights getAllServers getAuthTokenInfo getCalendarResource getConfig getCos getDistributionList getDistributionListMembership getDomain getDomainInfo getConfigSMIMEConfig getDomainSMIMEConfig getEffectiveRights getCreateObjectAttrs getFreebusyQueueInfo getGrants getMailboxInfo getQuotaUsage getRight getRightsDoc getServer getShareInfo getSpnegoDomain grantRight help modifyAccount modifyCalendarResource modifyConfig modifyCos modifyDataSource modifyDistributionList modifyDomain modifyConfigSMIMEConfig modifyDomainSMIMEConfig modifyIdentity modifySignature modifyServer pushFreebusy pushFreebusyDomain purgeAccountCalendarCache purgeFreebusyQueue recalculateMailboxCounts removeAccountAlias removeAccountLogger removeDistributionListAlias removeDistributionListMember removeConfigSMIMEConfig removeDomainSMIMEConfig renameAccount renameCalendarResource renameCos renameDistributionList renameDomain reIndexMailbox compactIndexMailbox verifyIndex getIndexStats revokeRight searchAccounts searchCalendarResources searchGal setLocalServerOnline selectMailbox setAccountCos setPassword setServerOffline getAllMtaAuthURLs getAllReverseProxyURLs getAllReverseProxyBackends getAllReverseProxyDomains getAllMemcachedServers reloadMemcachedClientConfig getMemcachedClientConfig syncGal updatePresenceSessionId resetAllLoggers'
+    printf %s "$opts"
+}
+
+# arguments:
+#   1 = current word to be completed
+#   2 = previous word
+# return 0 if no more completions should be sought, 1 otherwise
+_zmprov_complete_baseopts()
+{
+    local split=false
+    type _split_longopt &>/dev/null && _split_longopt && split=true
+
+    case $2 in
+
+	      getCalendarResource|gcr)
+            _zmprov_calendarList "$1"
+            return 0
+            ;;
+
+	      getConfig|gcf)
+            _zmprov_configList "$1"
+            return 0
+            ;;
+
+        getCos|gc)
+            _zmprov_cosList "$1"
+            return 0
+            ;;
+
+        getDomain|gd)
+             _zmprov_domainList "$1"
+            return 0
+            ;;
+
+        getDistributionList |gdl)
+             _zmprov_dlList "$1"
+            return 0
+            ;;
+
+        getAccountLoggers |gal)
+             _zmprov_dlList "$1"
+            return 0
+            ;;
+
+        getServer |gs)
+             _zmprov_serverList "$1"
+            return 0
+            ;;
+
+#        TODO: Add the log categories to the addAccountLogger command
+#        addAccountLogger |aal)
+#             _zmprov_dlList "$1"
+#            return 0
+#            ;;
+
+esac
+
+    $split && return 0 || return 1
+}
+
+_zmprov()
+{
+    COMPREPLY=()
+    local zmprov=$1
+    local cur prev
+    local -a words
+    if type _get_comp_words_by_ref &>/dev/null ; then
+        _get_comp_words_by_ref cur prev words
+    else
+        cur=$2 prev=$3 words=("${COMP_WORDS[@]}")
+    fi
+
+    _zmprov_complete_baseopts "$cur" "$prev" && return 0
+
+    COMPREPLY=( $( compgen -W '$( _zmprov_baseopts )' -- "$cur" ) )
+} &&
+complete -F _zmprov zmprov
+
+# Local variables:
+# mode: shell-script
+# sh-basic-offset: 4
+# sh-indent-comment: t
+# indent-tabs-mode: nil
+# End:
+# ex: ts=4 sw=4 et filetype=sh
+
