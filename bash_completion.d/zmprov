@@ -1,4 +1,15 @@
-# bash completion for zmprov
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 # arguments:
 #   1 = current word to be completed
@@ -102,7 +113,7 @@ _zmprov()
     #sourcing the local environment in order to make the ldapsearch
     source ~/bin/zmshutil
     zmsetvars
-    
+
     COMPREPLY=()
     local cur prev
     local -a words
@@ -115,12 +126,12 @@ _zmprov()
    local i c cmd
    for (( i=1; i < ${#words[@]}-1; i++ )) ; do
         [[ -n $cmd ]] && break
-        for c in $( _zmprov_baseopts ) $( _zmprov_baseoptshort ) ; do 
+        for c in $( _zmprov_baseopts ) $( _zmprov_baseoptshort ) ; do
             [[ ${words[i]} == $c ]] && cmd=$c && break
         done
     done
 
-    case $cmd in 
+    case $cmd in
 
 	getAccount|ga|modifyAccount|ma)
             _zmprov_accountList "$cur"
@@ -179,11 +190,11 @@ _zmprov()
             return 0
 	    ;;
 
-	deleteServer|ds) 
+	deleteServer|ds)
             _zmprov_serverList "$cur"
             return 0
             ;;
-	
+
 	addAccountAlias|aaa|checkPasswordStrength|cps|deleteAccount|da|deleteSignature|dsig|getSignatures|gsig|getAccountMembership|gam|renameAccount|ra|setAccountCos|sac|setPassword|sp)
             _zmprov_accountList "$cur"
             return 0
