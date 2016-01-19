@@ -15,9 +15,9 @@ The autocomplete file use the following packages :
 1. first clone the project
     git clone https://github.com/wolfyzvf/Zimbra-Collaboration-Bash-Completion
 2. move the zmprov file to /etc/bash_completion.d folder
-    mv bash_completion.d/zmprov /etc/bash_completion.d/
+    mv Zimbra-Collaboration-Bash-Completion/bash_completion.d/zmprov /etc/bash_completion.d/
 3. make it executable
-    chmod +x zmprov
+    chmod +x /etc/bash_completion.d/zmprov
 
 ## Ubuntu
     apt-get install bash-completion
