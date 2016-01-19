@@ -1,5 +1,6 @@
 # Description
 Who has never wished to have autocompletion on the cli of Zimbra ?
+
 This project is here to solve this problem and help the sysadmin life.
 
 # Requirements
@@ -23,6 +24,7 @@ The autocomplete file use the following packages :
 
 ## CentOS
 Turn on EPEL repositories and then :
+
     yum install bash-completion
 
 # Provides
