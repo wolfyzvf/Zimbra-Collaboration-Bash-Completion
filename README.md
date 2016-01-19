@@ -1,5 +1,5 @@
 # Description
-Who has never wished to have autocompletion on the cli in Zimbra ?
+Who has never wished to have autocompletion on the cli of Zimbra ?
 This project is here to solve this problem and help the sysadmin life.
 
 # Requirements
