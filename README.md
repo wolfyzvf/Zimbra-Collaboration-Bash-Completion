@@ -35,16 +35,17 @@ Turn on EPEL repositories and then :
 1. Autocompletion on accounts/server
 2. Autocompletion on accounts/server attributes
 3. Autocompletion on logging attributes
+4. Autocompletion for zmcontrol
 
 # Roadmap
-1. Autocompletion on the domain
+1. Autocompletion on the domain attributes
 2. Add help when autocomplete a command
-3. Add automcompletion for the zmmailbox command
+3. Add autocompletion for the zmmailbox command
 
 # License
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
+the Free Software Foundation, either version 2 of the License, or
 (at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
