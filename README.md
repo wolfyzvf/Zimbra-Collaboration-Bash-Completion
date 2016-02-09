@@ -8,34 +8,22 @@ The autocomplete file use the following packages :
 - sed
 - tr
 - bash-completion for Ubuntu
-- bash_completion for CentOS - RHEL
+- bash_completion for CentOS - RHEL (need to enable the Epel repositories)
 
 # Installation
 1. first clone the project  
 
     git clone https://github.com/wolfyzvf/Zimbra-Collaboration-Bash-Completion  
 
-2. move the zmprov file to /etc/bash_completion.d folder  
+2. move the zmprov file to /etc/bash_completion.d folder
 
-    mv Zimbra-Collaboration-Bash-Completion/bash_completion.d/zmprov /etc/bash_completion.d/  
-
-3. make it executable  
-
-    chmod +x /etc/bash_completion.d/zmprov
-
-## Ubuntu
-    apt-get install bash-completion
-
-## CentOS
-Turn on EPEL repositories and then :  
-
-    yum install bash-completion
+    mv Zimbra-Collaboration-Bash-Completion/bash_completion.d/* /etc/bash_completion.d/
 
 # Provides
 1. Autocompletion on accounts/server
 2. Autocompletion on accounts/server attributes
 3. Autocompletion on logging attributes
-4. Autocompletion for zmcontrol
+4. Autocompletion to restart all the zimbra services
 
 # Roadmap
 1. Autocompletion on the domain attributes
